@@ -9,7 +9,7 @@ import path_check
 import video_info
 
 
-def test_open(file_path):
+def test_open(file_path: str) -> bool:
     """测试文件能否被 av 打开"""
 
     container = None
@@ -40,7 +40,7 @@ def test_open(file_path):
                 pass
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="3D视频格式转换器：支持SBS与TAB互相转换"
     )
