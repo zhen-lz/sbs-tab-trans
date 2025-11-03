@@ -205,7 +205,7 @@ def tab_to_sbs(
 
                         if progress_callback and frames > 0:
                             processed_frames += 1
-                            progress = min(processed_frames / frames, 1.0)
+                            progress = min(processed_frames / frames * 100, 100)
                             progress_callback(progress)
 
                 else:
