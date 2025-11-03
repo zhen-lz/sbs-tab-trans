@@ -93,7 +93,7 @@ def sample_frames(
         with av.open(video_path) as container:
             video_stream = container.streams.video[0]
             total_frames = (
-                int(video_stream.duration * video_stream.time_base * video_stream.rate)
+                int(video_stream.duration * video_stream.time_base * video_stream.average_rate)
                 if video_stream.duration and video_stream.time_base
                 else 0
             )
