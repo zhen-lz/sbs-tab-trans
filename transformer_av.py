@@ -32,6 +32,10 @@ def sbs_to_tab(
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
                         rate=in_stream.average_rate,
+                        width=tab_width,
+                        height=tab_height,
+                        bit_rate=in_stream.bit_rate,
+                        time_base=in_stream.time_base,
                         options={
                             "width": str(tab_width),
                             "height": str(tab_height),
@@ -47,6 +51,8 @@ def sbs_to_tab(
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
                         rate=in_stream.sample_rate,
+                        bit_rate=in_stream.bit_rate,
+                        time_base=in_stream.time_base,
                         options={
                             "channels": str(in_stream.channels),
                             "layout": str(in_stream.codec_context.layout),
@@ -60,6 +66,7 @@ def sbs_to_tab(
                 else:
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
+                        time_base=in_stream.time_base,
                         options={
                             "time_base": str(in_stream.time_base),
                         },
@@ -98,7 +105,7 @@ def sbs_to_tab(
 
                         if progress_callback and frames > 0:
                             processed_frames += 1
-                            progress = min(processed_frames / frames, 1.0)
+                            progress = min(processed_frames / frames * 100, 100.0)
                             progress_callback(progress)
 
                 else:
@@ -138,6 +145,10 @@ def tab_to_sbs(
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
                         rate=in_stream.average_rate,
+                        width=tab_width,
+                        height=tab_height,
+                        bit_rate=in_stream.bit_rate,
+                        time_base=in_stream.time_base,
                         options={
                             "width": str(tab_width),
                             "height": str(tab_height),
@@ -153,6 +164,8 @@ def tab_to_sbs(
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
                         rate=in_stream.sample_rate,
+                        bit_rate=in_stream.bit_rate,
+                        time_base=in_stream.time_base,
                         options={
                             "channels": str(in_stream.channels),
                             "layout": str(in_stream.codec_context.layout),
@@ -166,6 +179,7 @@ def tab_to_sbs(
                 else:
                     out_stream = out_container.add_stream(
                         codec_name=in_stream.codec_context.codec.name,
+                        time_base=in_stream.time_base,
                         options={
                             "time_base": str(in_stream.time_base),
                         },
